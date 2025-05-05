@@ -18,6 +18,8 @@ session Isabelle_Set = HOTG +
     "Matrices"
     "Nat"
     "Set_Extensions"
+    "TypeClasses"
+    "TypeClasses/Algebra"
   theories
     TSBinary_Relations
     TSFixpoints
