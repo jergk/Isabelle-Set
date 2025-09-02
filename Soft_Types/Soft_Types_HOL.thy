@@ -273,10 +273,7 @@ val soft_type_simp_solver =
       THEN
       (SUBGOAL (fn (_, j) =>
         Derivation.full_discharge_types_tac (Simplifier.prems_of ctxt) [] ctxt j)) i
-  in
-    map_theory_simpset (fn ctxt => ctxt
-      addSolver (mk_solver "discharge_types" solver))
-  end
+  in map_theory_simpset (Simplifier.add_unsafe_solver (mk_solver "discharge_types" solver)) end
 \<close>
 
 setup \<open>soft_type_simp_solver\<close>

@@ -103,7 +103,7 @@ lemma Dep_bin_rel_covariant_codom:
   assumes "R \<Ztypecolon> {\<Sum>}x : A. (B x)"
   and "\<And>x y. R x y \<Longrightarrow> x \<Ztypecolon> A \<Longrightarrow> y \<Ztypecolon> B x \<Longrightarrow> y \<Ztypecolon> B' x"
   shows "R \<Ztypecolon> {\<Sum>}x : A. (B' x)"
-  using assms by (urule dep_bin_rel_covariant_codom where chained = fact)
+  using assms by (urule dep_bin_rel_covariant_codom chained: fact)
 
 lemma Bin_rel_eq_Dep_bin_rel: "(A {\<times>} B) = Dep_bin_rel A (\<lambda>_. B)"
   supply bin_rel_pred_eq_dep_bin_rel_pred[simp] by (urule refl)
@@ -121,7 +121,7 @@ lemma Bin_relI [type_intro]:
   assumes "\<And>x y. R x y \<Longrightarrow> x \<Ztypecolon> A"
   and "\<And>x y. R x y \<Longrightarrow> x \<Ztypecolon> A \<Longrightarrow> y \<Ztypecolon> B"
   shows "R \<Ztypecolon> A {\<times>} B"
-  using assms by (urule bin_relI where chained = fact)
+  using assms by (urule bin_relI chained: fact)
 
 lemma Bin_rel_if_bin_rel_and:
   assumes "\<And>x y. R x y \<Longrightarrow> x \<Ztypecolon> A \<and> y \<Ztypecolon> B"

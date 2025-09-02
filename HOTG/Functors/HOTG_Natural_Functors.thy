@@ -817,7 +817,7 @@ lemma is_fold_fold_if_algebra:
   assumes "algebra ia T s"
   shows "is_fold T s (fold T s)"
   unfolding fold_def using assms ex_algebra_morph_if_algebra
-  by (urule someI_ex where chained = insert) (blast intro: is_foldI)
+  by (urule someI_ex chained: insert) (blast intro: is_foldI)
 
 end
 

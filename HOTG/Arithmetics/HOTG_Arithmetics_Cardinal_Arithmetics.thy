@@ -18,7 +18,7 @@ proof (intro cardinality_eq_if_equipollent equipollentI)
   let ?f = "\<lambda>z. (THE y : Y. z = X + y)"
   let ?g = "((+) X)"
   from injective_on_if_inverse_on show "bijection_on (lift X Y) Y ?f ?g"
-    by (urule bijection_onI dep_mono_wrt_predI where chained = insert)+
+    by (urule bijection_onI dep_mono_wrt_predI chained: insert)+
     (auto intro: pred_btheI[of "\<lambda>x. x \<in> Y"] simp: lift_eq_repl_add mem_of_eq)
 qed
 

@@ -189,7 +189,7 @@ ML \<open>
     end
 
   val string_simp_solver = map_theory_simpset
-    (fn ctxt => ctxt addSolver (mk_solver "distinguish strings" string_ne_tac))
+    (Simplifier.add_unsafe_solver (mk_solver "distinguish strings" string_ne_tac))
 \<close>
 
 setup \<open>string_simp_solver\<close>

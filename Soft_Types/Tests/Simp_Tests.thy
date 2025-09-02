@@ -1,6 +1,6 @@
 section \<open>Simproc Tests\<close>
 theory Simp_Tests
-  imports "Soft_Types.Soft_Types_HOL"
+  imports Soft_Types.Soft_Types_HOL
 begin
 
 notepad
