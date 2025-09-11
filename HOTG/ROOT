@@ -16,8 +16,10 @@ session HOTG = Transport +
     "Binary_Relations/Properties"
     "Binary_Relations/Recursions"
     Cardinals
+    Choice
     Equipollence
     Functions
+    Functors
     "Functions/Properties"
     Mem_Transitive_Closure
     Orders
@@ -27,8 +29,11 @@ session HOTG = Transport +
     HOTG_Arithmetics
     HOTG_Binary_Relations
     HOTG_Cardinals
+    Hilbert_Epsilon_Choice
+    HOTG_Choice
     HOTG_Equipollence
     HOTG_Functions
+    HOTG_Natural_Functors
     HOTG_Mem_Transitive_Closed
     HOTG_Mem_Transitive_Closure
     HOTG_Orders

@@ -74,7 +74,7 @@ proof -
   moreover from wello have "connected_on (in_field (\<prec>)\<up>\<^bsub>X\<^esub>) (\<prec>)\<up>\<^bsub>X\<^esub>" by fastforce
   moreover from asymmetric_mem have "asymmetric (\<in>)\<up>\<^bsub>\<alpha>\<^esub>" by fastforce
   ultimately have "((\<in>)\<up>\<^bsub>\<alpha>\<^esub> \<Rightarrow> (\<prec>)\<up>\<^bsub>X\<^esub>) e" using mono_nr
-    by (urule mono_wrt_rel_if_connected_on_if_asymmetric_if_mono_if_inverse_on where chained = insert)
+    by (urule mono_wrt_rel_if_connected_on_if_asymmetric_if_mono_if_inverse_on chained: insert)
     auto
   with \<open>ordinal \<alpha>\<close> bij mono_nr show ?thesis
     by (intro bexI exI) (fastforce intro!: order_isomorphic_onI order_isomorphism_onI bexI)

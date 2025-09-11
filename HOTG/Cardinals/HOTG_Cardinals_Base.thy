@@ -35,7 +35,7 @@ lemma cardinality_eq_if_equipollent:
   assumes "X \<approx> Y"
   shows "|X| = |Y|"
   unfolding cardinality_def using assms transitive_equipollent symmetric_equipollent
-  by (urule arg_cong2 where chained = insert) (auto 0 3 dest: symmetricD)
+  by (urule arg_cong2 chained: insert) (auto 0 3 dest: symmetricD)
 
 text\<open>The next lemma shows that @{term "|X|"} has the properties expected from the definition.\<close>
 

@@ -7,7 +7,7 @@ theory TDependent_Binary_Relations
 begin
 
 definition "dep_bin_rel_type A B \<equiv> {\<Sum>}x : of_type A. of_type (B x)"
-adhoc_overloading dep_bin_rel dep_bin_rel_type
+adhoc_overloading dep_bin_rel \<rightleftharpoons> dep_bin_rel_type
 
 lemma dep_bin_rel_type_eq_dep_bin_rel_pred [simp]:
   "({\<Sum>}x : A. B x) = {\<Sum>}x : of_type A. of_type (B x)"
@@ -24,7 +24,7 @@ lemma dep_bin_rel_type_iff_dep_bin_rel_pred [iff]:
   by simp
 
 definition "bin_rel_type A B \<equiv> of_type A {\<times>} of_type B"
-adhoc_overloading bin_rel bin_rel_type
+adhoc_overloading bin_rel \<rightleftharpoons> bin_rel_type
 
 lemma bin_rel_type_eq_bin_rel_pred [simp]: "(A {\<times>} B) = (of_type A {\<times>} of_type B)"
   unfolding bin_rel_type_def by simp
@@ -40,7 +40,7 @@ lemma bin_rel_type_iff_bin_rel_pred [iff]:
   by simp
 
 definition [typedef]: "Dep_bin_rel (A :: 'a type) B \<equiv> type ({\<Sum>}x : A. B x)"
-adhoc_overloading dep_bin_rel Dep_bin_rel
+adhoc_overloading dep_bin_rel \<rightleftharpoons> Dep_bin_rel
 
 lemma of_type_Dep_bin_rel_eq_dep_bin_rel_type [type_to_HOL_simp]:
   "of_type ({\<Sum>}x : A. B x) = ({\<Sum>}x : A. B x)"
@@ -51,7 +51,7 @@ soft_type_translation
   unfolding type_to_HOL_simp by simp
 
 definition [typedef]: "Bin_rel (A :: 'a type) B \<equiv> type (A {\<times>} B)"
-adhoc_overloading bin_rel Bin_rel
+adhoc_overloading bin_rel \<rightleftharpoons> Bin_rel
 
 lemma of_type_Bin_rel_eq_bin_rel_type [type_to_HOL_simp]:
   "of_type (A {\<times>} B) = (A {\<times>} B)"
@@ -103,7 +103,7 @@ lemma Dep_bin_rel_covariant_codom:
   assumes "R \<Ztypecolon> {\<Sum>}x : A. (B x)"
   and "\<And>x y. R x y \<Longrightarrow> x \<Ztypecolon> A \<Longrightarrow> y \<Ztypecolon> B x \<Longrightarrow> y \<Ztypecolon> B' x"
   shows "R \<Ztypecolon> {\<Sum>}x : A. (B' x)"
-  using assms by (urule dep_bin_rel_covariant_codom where chained = fact)
+  using assms by (urule dep_bin_rel_covariant_codom chained: fact)
 
 lemma Bin_rel_eq_Dep_bin_rel: "(A {\<times>} B) = Dep_bin_rel A (\<lambda>_. B)"
   supply bin_rel_pred_eq_dep_bin_rel_pred[simp] by (urule refl)
@@ -121,7 +121,7 @@ lemma Bin_relI [type_intro]:
   assumes "\<And>x y. R x y \<Longrightarrow> x \<Ztypecolon> A"
   and "\<And>x y. R x y \<Longrightarrow> x \<Ztypecolon> A \<Longrightarrow> y \<Ztypecolon> B"
   shows "R \<Ztypecolon> A {\<times>} B"
-  using assms by (urule bin_relI where chained = fact)
+  using assms by (urule bin_relI chained: fact)
 
 lemma Bin_rel_if_bin_rel_and:
   assumes "\<And>x y. R x y \<Longrightarrow> x \<Ztypecolon> A \<and> y \<Ztypecolon> B"

@@ -23,7 +23,7 @@ soft_type_translation
   unfolding Ord_def type_to_HOL_simp by simp
 
 context
-  notes type_to_HOL_simp[simp, symmetric, simp del] [[urule chained = fact]]
+  notes type_to_HOL_simp[simp, symmetric, simp del] [[urule chained: fact]]
 begin
 
 lemma OrdI:

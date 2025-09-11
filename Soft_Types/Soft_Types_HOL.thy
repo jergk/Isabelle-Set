@@ -37,7 +37,7 @@ method unfold_types =
 subsection \<open>Dependent Function/Pi-Types (\<Pi>-Types)\<close>
 
 definition [typedef]: "Dep_fun (A :: 'a type) B \<equiv> type ((x : A) \<Rightarrow> B x)"
-adhoc_overloading dep_mono_wrt Dep_fun
+adhoc_overloading dep_mono_wrt \<rightleftharpoons> Dep_fun
 
 lemma of_type_Dep_fun_eq_dep_mono_wrt_type [type_to_HOL_simp]:
   "of_type ((x : A) \<Rightarrow> B x) = ((x : A) \<Rightarrow> B x)"
@@ -45,7 +45,7 @@ lemma of_type_Dep_fun_eq_dep_mono_wrt_type [type_to_HOL_simp]:
 
 (*TODO: make it a definition*)
 abbreviation "Fun A B \<equiv> Dep_fun A (\<lambda>_. B)"
-adhoc_overloading mono_wrt Fun
+adhoc_overloading mono_wrt \<rightleftharpoons> Fun
 
 lemma of_type_Fun_eq_mono_wrt_type [type_to_HOL_simp]: "of_type (A \<Rightarrow> B) = (A \<Rightarrow> B)"
   by (simp add: mono_wrt_pred_eq_dep_mono_wrt_pred type_to_HOL_simp)
@@ -273,10 +273,7 @@ val soft_type_simp_solver =
       THEN
       (SUBGOAL (fn (_, j) =>
         Derivation.full_discharge_types_tac (Simplifier.prems_of ctxt) [] ctxt j)) i
-  in
-    map_theory_simpset (fn ctxt => ctxt
-      addSolver (mk_solver "discharge_types" solver))
-  end
+  in map_theory_simpset (Simplifier.add_unsafe_solver (mk_solver "discharge_types" solver)) end
 \<close>
 
 setup \<open>soft_type_simp_solver\<close>
