@@ -9,8 +9,9 @@ begin
 
 context
   notes type_to_HOL_simp[simp, symmetric, simp del]
-  [[ucombine add: \<open>Standard_Unification_Combine.eunif_data (K Higher_Order_Unification.unify)
-    (Standard_Unification_Combine.default_metadata \<^binding>\<open>ho_unif\<close>)\<close>]]
+  [[ucombine add: \<open>Standard_Unification_Combine.eunif_data
+    (Standard_Unification_Combine.default_metadata \<^binding>\<open>ho_unif\<close>,
+    K Higher_Order_Unification.unify)\<close>]]
 begin
 
 lemma id_type [type]: "id \<Ztypecolon> A \<Rightarrow> A"
